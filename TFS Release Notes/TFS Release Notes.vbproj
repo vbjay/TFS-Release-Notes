@@ -265,6 +265,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cmdlets\GetTFS.vb" />
+    <Compile Include="Cmdlets\GetWorkItemFiles.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -280,6 +281,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Outputs\FileChangeInfo.vb" />
     <Compile Include="Outputs\TFSCollection.vb" />
     <Compile Include="Services.vb" />
   </ItemGroup>
