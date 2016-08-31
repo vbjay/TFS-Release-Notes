@@ -1,4 +1,4 @@
-[![Stories in Ready](https://badge.waffle.io/vbjay/TFS-Release-Notes.png?label=ready&title=Ready)](https://waffle.io/vbjay/TFS-Release-Notes)
+[![Stories in Ready](https://badge.waffle.io/vbjay/TFS-Release-Notes.png?label=ready&title=Ready&nbsp;Tasks)](https://waffle.io/vbjay/TFS-Release-Notes)
 # TFS-Release-Notes
 Generates a list of files changed from a work item.
 
