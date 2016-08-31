@@ -11,5 +11,5 @@ $tfs=Get-Tfs <URI to TFS project collection>
 $wi=$tfs.WIT.GetWorkItem(<work item id>)
 
 Get-WorkItemFiles <URI to TFS project collection> <work item id>
-Get-WorkItemFiles $tfs <work item id>
+Get-WorkItemFiles $tfs <work item id1,work item id2...>
 ```

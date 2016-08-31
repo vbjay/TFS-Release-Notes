@@ -26,8 +26,8 @@ Public Class GetWorkItemFiles
                ValueFromPipelineByPropertyName:=True,
                ValueFromPipeline:=True,
                Position:=1,
-               HelpMessage:="The ID of the workitem to retrieve changed files from.")>
-    Property WorkItemID As Integer
+               HelpMessage:="The IDs of the work items to retrieve changed files from.")>
+    Property WorkItemIDs As Integer()
 
     <Parameter(Mandatory:=False,
                ValueFromPipelineByPropertyName:=True,
@@ -61,10 +61,12 @@ Public Class GetWorkItemFiles
     Protected Overrides Sub ProcessRecord()
         MyBase.ProcessRecord()
 
-        Dim wi As WorkItem() = {TFSCollection.WIT.GetWorkItem(WorkItemID)}
+        'No need to check for array length because PowerShell handles it for us
+
+        Dim wi As WorkItem() = WorkItemIDs.Distinct.Select(Function(w) TFSCollection.WIT.GetWorkItem(w)).ToArray
 
         If _GetSubWorkItems Then
-            wi = GetChildWorkItems(wi.First, TFSCollection).ToArray
+            wi = wi.SelectMany(Function(w) GetChildWorkItems(w, TFSCollection)).DistinctBy(Function(w) w.Id).ToArray
         End If
         Dim vcs = TFSCollection.VCS
 
