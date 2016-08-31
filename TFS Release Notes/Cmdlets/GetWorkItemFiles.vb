@@ -64,7 +64,7 @@ Public Class GetWorkItemFiles
         Dim wi As WorkItem() = {TFSCollection.WIT.GetWorkItem(WorkItemID)}
 
         If _GetSubWorkItems Then
-            wi = GetCHildWorkItems(wi.First, TFSCollection).ToArray
+            wi = GetChildWorkItems(wi.First, TFSCollection).ToArray
         End If
         Dim vcs = TFSCollection.VCS
 
