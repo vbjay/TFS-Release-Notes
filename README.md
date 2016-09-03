@@ -10,6 +10,6 @@ Import-Module '.\TFS Release Notes.dll'
 $tfs=Get-Tfs <URI to TFS project collection>
 $wi=$tfs.WIT.GetWorkItem(<work item id>)
 
-Get-WorkItemFiles <URI to TFS project collection> <work item id>
+Get-WorkItemFiles <URI to TFS project collection> <work item id1,work item id2...>
 Get-WorkItemFiles $tfs <work item id1,work item id2...>
 ```
