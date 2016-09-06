@@ -4,60 +4,12 @@ Imports Microsoft.TeamFoundation.WorkItemTracking.Client
 
 <Cmdlet(VerbsCommon.Get, "WorkItemFiles")>
 Public Class GetWorkItemFiles
-    Inherits PSCmdlet
-
-    <Parameter(Mandatory:=True,
-               ValueFromPipelineByPropertyName:=True,
-               ValueFromPipeline:=True,
-               Position:=0,
-               ParameterSetName:="URL",
-               HelpMessage:="The URL of the TFS collection to access.")>
-    Property ServerURL As Uri
-
-    <Parameter(Mandatory:=True,
-               ValueFromPipelineByPropertyName:=True,
-               ValueFromPipeline:=True,
-               Position:=0,
-               ParameterSetName:="Collection",
-               HelpMessage:="The TFS collection to use.")>
-    Property TFSCollection As TFSCollection
-
-    <Parameter(Mandatory:=True,
-               ValueFromPipelineByPropertyName:=True,
-               ValueFromPipeline:=True,
-               Position:=1,
-               HelpMessage:="The IDs of the work items to retrieve changed files from.")>
-    Property WorkItemIDs As Integer()
-
-    <Parameter(Mandatory:=False,
-               ValueFromPipelineByPropertyName:=True,
-               ValueFromPipeline:=True,
-               HelpMessage:="Add this switch to get all child workitems recursively and get changes from all of them.")>
-    Property GetSubWorkItems As SwitchParameter
-        Get
-            Return _GetSubWorkItems
-        End Get
-        Set(value As SwitchParameter)
-            _GetSubWorkItems = value.ToBool
-        End Set
-    End Property
-
-    Private _GetSubWorkItems As Boolean = False
+    Inherits WorkItemCmdlet
 
     Protected Overrides Sub BeginProcessing()
         MyBase.BeginProcessing()
-        Select Case True
-
-            Case TFSCollection IsNot Nothing
-                'we are good
-            Case TFSCollection Is Nothing AndAlso ServerURL IsNot Nothing
-
-                TFSCollection = GetTFSCollection(ServerURL)
-
-        End Select
 
     End Sub
-
     Protected Overrides Sub ProcessRecord()
         MyBase.ProcessRecord()
 
@@ -65,12 +17,12 @@ Public Class GetWorkItemFiles
 
         Dim wi As WorkItem() = WorkItemIDs.Distinct.Select(Function(w) TFSCollection.WIT.GetWorkItem(w)).ToArray
 
-        If _GetSubWorkItems Then
+        If GetSubWorkItems Then
             wi = wi.SelectMany(Function(w) GetChildWorkItems(w, TFSCollection)).DistinctBy(Function(w) w.Id).ToArray
         End If
         Dim vcs = TFSCollection.VCS
 
-        Dim links = wi.SelectMany(Function(w) w.Links.Cast(Of Link).OfType(Of ExternalLink))
+        Dim links = wi.SelectMany(Function(w) w.Links.Cast(Of Link).OfType(Of ExternalLink)())
         Dim changesetRegex As New Regex("vstfs:///VersionControl/Changeset/(\d+)", RegexOptions.Compiled)
         Dim changesetLinks = links.Where(Function(l) changesetRegex.IsMatch(l.LinkedArtifactUri))
 
