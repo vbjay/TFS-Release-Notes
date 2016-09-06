@@ -35,9 +35,7 @@ Public Class GetWorkItemFiles
 
         For Each item In byItem
 
-            For Each ch In item.Changes.OrderByDescending(Function(c) c.Item.CheckinDate)
-                WriteObject(item)
-            Next
+            WriteObject(item)
         Next
 
     End Sub
