@@ -2,10 +2,14 @@
 Imports System.ComponentModel
 Public Class TFSCollection
     Public Sub New(Project As TfsTeamProjectCollection)
-        ProjectCollection = Project
+        _ProjectCollection = Project
     End Sub
-
+    Private _ProjectCollection As TfsTeamProjectCollection
     ReadOnly Property ProjectCollection As TfsTeamProjectCollection
+        Get
+            Return _ProjectCollection
+        End Get
+    End Property
     <Description("Work Item Tracking")>
     ReadOnly Property WIT As Microsoft.TeamFoundation.WorkItemTracking.Client.WorkItemStore
         Get
