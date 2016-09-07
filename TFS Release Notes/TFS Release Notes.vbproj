@@ -265,6 +265,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cmdlets\GetTFS.vb" />
+    <Compile Include="Cmdlets\GetWorkItemAttachments.vb" />
     <Compile Include="Cmdlets\GetWorkItemSQLScripts.vb" />
     <Compile Include="Cmdlets\GetWorkItemFiles.vb" />
     <Compile Include="Cmdlets\WorkItemCmdlet.vb" />
@@ -285,6 +286,7 @@
     </Compile>
     <Compile Include="Outputs\FileChangeInfo.vb" />
     <Compile Include="Outputs\TFSCollection.vb" />
+    <Compile Include="Outputs\WorkItemAttachmentsInfo.vb" />
     <Compile Include="Services.vb" />
   </ItemGroup>
   <ItemGroup>
