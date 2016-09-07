@@ -265,6 +265,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cmdlets\GetTFS.vb" />
+    <Compile Include="Cmdlets\GetUnlinkedChanges.vb" />
     <Compile Include="Cmdlets\GetWorkItemAttachments.vb" />
     <Compile Include="Cmdlets\GetWorkItemSQLScripts.vb" />
     <Compile Include="Cmdlets\GetWorkItemFiles.vb" />

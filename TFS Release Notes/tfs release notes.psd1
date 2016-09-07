@@ -72,7 +72,9 @@ FunctionsToExport = @()
 CmdletsToExport = @('Get-TFS',
     'Get-WorkItemAttachments',
     'Get-WorkItemFiles',
-    'Get-WorkItemSQLScripts')
+    'Get-WorkItemSQLScripts',
+    'Get-UnlinkedChanges'
+)
 
 # Variables to export from this module
 VariablesToExport = '*'
