@@ -265,7 +265,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cmdlets\GetTFS.vb" />
-    <Compile Include="Cmdlets\GetWorkItemScripts.vb" />
+    <Compile Include="Cmdlets\GetWorkItemSQLScripts.vb" />
     <Compile Include="Cmdlets\GetWorkItemFiles.vb" />
     <Compile Include="Cmdlets\WorkItemCmdlet.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
