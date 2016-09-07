@@ -22,8 +22,11 @@ Public Class GetWorkItemFiles
         Dim changesets = changesetLinks.Select(Function(c) vcs.GetChangeset(CInt(changesetRegex.Match(c.LinkedArtifactUri).Groups(1).Value))).DistinctBy(Function(c) c.ChangesetId)
 
         Dim changes = changesets.SelectMany(Function(cs) cs.Changes)
-
-        Dim changesetWorkItems = changesets.Select(Function(cs) New With {.Changes = cs.Changes.Select(Function(c) c.Item.ItemId).ToArray, .WorkItems = cs.WorkItems})
+        WriteVerbose("Generating list of Work Items and Changesets...")
+        Dim changesetWorkItems = changesets.Select(Function(cs) New With {.Changes =
+                                                       cs.Changes.Select(Function(c) c.Item.ItemId).ToArray,
+                                                       .WorkItems = cs.WorkItems}).ToArray
+        WriteVerbose("Generated list of Work Items and Changesets...")
         WriteVerbose("Generating file change list...")
         Dim byItem = (From c In changes Group By ServerPath = c.Item.ServerItem Into ItemChanges = Group
                       Select New FileChangeInfo With {.ServerPath = ServerPath,
