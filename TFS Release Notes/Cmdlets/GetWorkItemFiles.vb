@@ -13,13 +13,6 @@ Public Class GetWorkItemFiles
     Protected Overrides Sub ProcessRecord()
         MyBase.ProcessRecord()
 
-        'No need to check for array length because PowerShell handles it for us
-
-        Dim wi As WorkItem() = WorkItemIDs.Distinct.Select(Function(w) TFSCollection.WIT.GetWorkItem(w)).ToArray
-
-        If GetSubWorkItems Then
-            wi = wi.SelectMany(Function(w) GetChildWorkItems(w, TFSCollection)).DistinctBy(Function(w) w.Id).ToArray
-        End If
         Dim vcs = TFSCollection.VCS
 
         Dim links = wi.SelectMany(Function(w) w.Links.Cast(Of Link).OfType(Of ExternalLink)())
