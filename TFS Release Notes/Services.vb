@@ -27,4 +27,18 @@ Module Services
             Next
         Next
     End Function
+
+    Function DownloadFile(URI As Uri, LocalPath As String) As Boolean
+
+        Try
+            If Not IO.Directory.Exists(IO.Path.GetDirectoryName(LocalPath)) Then
+                IO.Directory.CreateDirectory(IO.Path.GetDirectoryName(LocalPath))
+            End If
+            My.Computer.Network.DownloadFile(URI.ToString, LocalPath)
+            Return True
+        Catch ex As Exception
+
+        End Try
+        Return False
+    End Function
 End Module
