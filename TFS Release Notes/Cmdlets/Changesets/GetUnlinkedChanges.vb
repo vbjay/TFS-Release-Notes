@@ -22,10 +22,10 @@ Public Class GetUnlinkedChanges
     Protected Overrides Sub ProcessRecord()
         MyBase.ProcessRecord()
 
-        Dim changes = TFSCollection.VCS.QueryHistory(ProjectPath, VersionSpec.Latest, 0, RecursionType.Full, Nothing, Nothing, Nothing, Int32.MaxValue, True, False).
-            Cast(Of Changeset)().
-            Where(Function(cs) cs.AssociatedWorkItems.Length = 0).
-            GroupBy(Function(cs) cs.Committer)
+        Dim changes = TFSCollection.VCS.QueryHistory(ProjectPath, VersionSpec.Latest, 0, RecursionType.Full, Nothing, VersionSpec.ParseSingleSpec(String.Format("D{0:MM/dd/yyyy}", Now.AddDays(-7)), ""), VersionSpec.ParseSingleSpec(String.Format("D{0:MM/dd/yyyy}", Now), ""), Int32.MaxValue, True, False).
+        Cast(Of Changeset)().
+        Where(Function(cs) cs.AssociatedWorkItems.Length = 0).
+        GroupBy(Function(cs) cs.Committer)
         For Each c In changes
 
             WriteObject(c.Key)
