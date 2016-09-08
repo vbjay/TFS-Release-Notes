@@ -106,7 +106,7 @@ PrivateData = @{
         # ProjectUri = ''
 
         # A URL to an icon representing this module.
-        # IconUri = ''
+         IconUri = '.\logo.png'
 
         # ReleaseNotes of this module
         # ReleaseNotes = ''
