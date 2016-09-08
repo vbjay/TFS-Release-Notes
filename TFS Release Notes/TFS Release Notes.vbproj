@@ -265,15 +265,15 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cmdlets\GetChangesetFiles.vb" />
+    <Compile Include="Cmdlets\Changesets\GetChangesetFiles.vb" />
     <Compile Include="Cmdlets\GetTFS.vb" />
-    <Compile Include="Cmdlets\GetUnlinkedChanges.vb" />
-    <Compile Include="Cmdlets\GetWorkItemAttachments.vb" />
-    <Compile Include="Cmdlets\GetWorkItemSQLScripts.vb" />
-    <Compile Include="Cmdlets\GetWorkItemFiles.vb" />
-    <Compile Include="Cmdlets\ChangesetCmdlet.vb" />
+    <Compile Include="Cmdlets\Changesets\GetUnlinkedChanges.vb" />
+    <Compile Include="Cmdlets\WorkItems\GetWorkItemAttachments.vb" />
+    <Compile Include="Cmdlets\WorkItems\GetWorkItemSQLScripts.vb" />
+    <Compile Include="Cmdlets\WorkItems\GetWorkItemFiles.vb" />
+    <Compile Include="Cmdlets\Changesets\ChangesetCmdlet.vb" />
     <Compile Include="Cmdlets\TFSCmdlet.vb" />
-    <Compile Include="Cmdlets\WorkItemCmdlet.vb" />
+    <Compile Include="Cmdlets\WorkItems\WorkItemCmdlet.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
