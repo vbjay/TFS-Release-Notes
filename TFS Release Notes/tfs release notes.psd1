@@ -74,7 +74,8 @@ CmdletsToExport = @('Get-TFS',
     'Get-WorkItemFiles',
     'Get-WorkItemSQLScripts',
     'Get-UnlinkedChanges',
-	'Get-ChangesetFiles'
+    'Get-ChangesetFiles',
+    'Get-WorkItemChangesets'
 )
 
 # Variables to export from this module

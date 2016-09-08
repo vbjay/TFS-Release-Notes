@@ -269,6 +269,7 @@
     <Compile Include="Cmdlets\GetTFS.vb" />
     <Compile Include="Cmdlets\Changesets\GetUnlinkedChanges.vb" />
     <Compile Include="Cmdlets\WorkItems\GetWorkItemAttachments.vb" />
+    <Compile Include="Cmdlets\WorkItems\GetWorkItemChangesets.vb" />
     <Compile Include="Cmdlets\WorkItems\GetWorkItemSQLScripts.vb" />
     <Compile Include="Cmdlets\WorkItems\GetWorkItemFiles.vb" />
     <Compile Include="Cmdlets\Changesets\ChangesetCmdlet.vb" />
