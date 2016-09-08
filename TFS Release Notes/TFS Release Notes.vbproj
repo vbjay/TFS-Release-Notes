@@ -272,6 +272,7 @@
     <Compile Include="Cmdlets\GetWorkItemSQLScripts.vb" />
     <Compile Include="Cmdlets\GetWorkItemFiles.vb" />
     <Compile Include="Cmdlets\ChangesetCmdlet.vb" />
+    <Compile Include="Cmdlets\TFSCmdlet.vb" />
     <Compile Include="Cmdlets\WorkItemCmdlet.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">

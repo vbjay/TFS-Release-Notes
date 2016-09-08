@@ -2,23 +2,7 @@
 Imports Microsoft.TeamFoundation.WorkItemTracking.Client
 
 Public MustInherit Class WorkItemCmdlet
-    Inherits PSCmdlet
-
-    <Parameter(Mandatory:=True,
-            ValueFromPipelineByPropertyName:=True,
-            ValueFromPipeline:=True,
-            Position:=0,
-            ParameterSetName:="URL",
-            HelpMessage:="The URL of the TFS collection to access.")>
-    Property ServerURL As Uri
-
-    <Parameter(Mandatory:=True,
-               ValueFromPipelineByPropertyName:=True,
-               ValueFromPipeline:=True,
-               Position:=0,
-               ParameterSetName:="Collection",
-               HelpMessage:="The TFS collection to use.")>
-    Property TFSCollection As TFSCollection
+    Inherits TFSCmdlet
 
     <Parameter(Mandatory:=True,
                ValueFromPipelineByPropertyName:=True,
