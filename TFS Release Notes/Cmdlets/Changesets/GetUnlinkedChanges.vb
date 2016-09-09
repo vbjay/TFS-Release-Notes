@@ -28,15 +28,35 @@ Public Class GetUnlinkedChanges
            HelpMessage:="The date to search backwards from for changesets.  Must be a value that can be converted to a DateTime.  Defaults to current date.")>
     Property ToDate As String
 
+    Private _all As Boolean = False
+    <Parameter(Mandatory:=False,
+             ValueFromPipelineByPropertyName:=True,
+             ValueFromPipeline:=True,
+             HelpMessage:="Add this switch to get all changesets and ignore date range criteria.")>
+    Property All As SwitchParameter
+        Get
+            Return _all
+        End Get
+        Set(value As SwitchParameter)
+            _all = value.ToBool
+        End Set
+    End Property
+
     Protected Overrides Sub BeginProcessing()
         MyBase.BeginProcessing()
-        If String.IsNullOrWhiteSpace(FromDate) Then
-            FromDate = Now.AddDays(-7).ToShortDateString
+        FromDate = Now.AddDays(-7).ToShortDateString
+        ToDate = Now.ToShortDateString
+
+        If Not _all Then
+            If String.IsNullOrWhiteSpace(FromDate) Then
+                FromDate = Now.AddDays(-7).ToShortDateString
+            End If
+
+            If String.IsNullOrWhiteSpace(ToDate) Then
+                ToDate = Now.ToShortDateString
+            End If
         End If
 
-        If String.IsNullOrWhiteSpace(ToDate) Then
-            ToDate = Now.ToShortDateString
-        End If
     End Sub
 
     Protected Overrides Sub ProcessRecord()
@@ -47,6 +67,11 @@ Public Class GetUnlinkedChanges
 
         Dim vfrom As VersionSpec = VersionSpec.ParseSingleSpec(String.Format("D{0:MM/dd/yyyy}", dtFrom), Nothing)
         Dim vTo As VersionSpec = VersionSpec.ParseSingleSpec(String.Format("D{0:MM/dd/yyyy}", dtTo), Nothing)
+
+        If _all Then
+            vfrom = Nothing
+            vTo = Nothing
+        End If
         WriteVerbose("Generating list of changes...")
 
         Dim changes = TFSCollection.VCS.QueryHistory(ProjectPath,
