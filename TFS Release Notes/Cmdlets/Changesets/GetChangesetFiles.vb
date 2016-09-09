@@ -1,6 +1,10 @@
 ﻿Imports System.Management.Automation
-
+''' <summary>
+''' <para type="description"></para>
+''' <para type="synopsis">Gets a list of changed files from a list of changeset ids.</para>
+''' </summary>
 <Cmdlet(VerbsCommon.Get, "ChangesetFiles")>
+<OutputType(GetType(FileChangeInfo))>
 Public Class GetChangesetFiles
     Inherits ChangesetCmdlet
 

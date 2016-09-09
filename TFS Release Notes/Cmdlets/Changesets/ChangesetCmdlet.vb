@@ -4,7 +4,9 @@ Imports Microsoft.TeamFoundation.VersionControl.Client
 
 Public MustInherit Class ChangesetCmdlet
     Inherits TFSCmdlet
-
+    ''' <summary>
+    ''' <para type="description">The IDs of the changesets to retrieve changed files from.</para>
+    ''' </summary>
     <Parameter(Mandatory:=True,
                ValueFromPipelineByPropertyName:=True,
                ValueFromPipeline:=True,
