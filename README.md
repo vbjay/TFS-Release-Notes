@@ -5,7 +5,7 @@ Generates a list of files changed from a work item.
 # Use
 
 ```powershell
-Import-Module '.\TFS Release Notes.dll'
+Import-Module '.\TFS Release Notes.psd1'
 
 $tfs=Get-Tfs <URI to TFS project collection>
 $wi=$tfs.WIT.GetWorkItem(<work item id>)
