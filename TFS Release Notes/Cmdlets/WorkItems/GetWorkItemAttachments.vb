@@ -7,7 +7,7 @@ Public Class GetWorkItemAttachments
     Protected Overrides Sub ProcessRecord()
         MyBase.ProcessRecord()
 
-        Dim wa = wi.Select(Function(w) New WorkItemAttachmentsInfo With {.Workitem = w, .Attachments = w.Attachments.Cast(Of Attachment).
+        Dim wa = currentWorkItems.Select(Function(w) New WorkItemAttachmentsInfo With {.Workitem = w, .Attachments = w.Attachments.Cast(Of Attachment).
                                OrderBy(Function(a) a.AttachedTime).ToArray}).Where(Function(w) w.Attachments.Any).
         OrderBy(Function(wc) wc.Attachments.Min(Function(a) a.AttachedTime)).ToArray
 

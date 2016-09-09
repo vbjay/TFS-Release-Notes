@@ -7,9 +7,9 @@ Public Class GetChangesetFiles
     Protected Overrides Sub ProcessRecord()
         MyBase.ProcessRecord()
 
-        Dim changes = cs.SelectMany(Function(cs) cs.Changes)
+        Dim changes = currentChangesets.SelectMany(Function(cs) cs.Changes)
         WriteVerbose("Generating list of Work Items and Changesets...")
-        Dim changesetWorkItems = cs.Select(Function(cs) New With {.Changes =
+        Dim changesetWorkItems = currentChangesets.Select(Function(cs) New With {.Changes =
                                                        cs.Changes.Select(Function(c) c.Item.ItemId).ToArray,
                                                        .WorkItems = cs.WorkItems}).ToArray
         WriteVerbose("Generated list of Work Items and Changesets...")

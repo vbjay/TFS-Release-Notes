@@ -12,13 +12,13 @@ Public MustInherit Class ChangesetCmdlet
                HelpMessage:="The IDs of the changesets to retrieve changed files from.")>
     Property ChangesetIDs As Integer()
 
-    Protected cs As Changeset()
+    Protected currentChangesets As Changeset()
     Protected Overrides Sub BeginProcessing()
         MyBase.BeginProcessing()
 
         'No need to check for array length because PowerShell handles it for us
         WriteVerbose("Retrieving changesets...")
-        cs = ChangesetIDs.Distinct.Select(Function(c) TFSCollection.VCS.GetChangeset(c)).ToArray
+        currentChangesets = ChangesetIDs.Distinct.Select(Function(c) TFSCollection.VCS.GetChangeset(c)).ToArray
 
         WriteVerbose("Retrieved changesets...")
     End Sub

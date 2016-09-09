@@ -11,7 +11,7 @@ Public Class GetWorkItemChangesets
 
         Dim vcs = TFSCollection.VCS
 
-        Dim links = wi.SelectMany(Function(w) w.Links.Cast(Of Link).OfType(Of ExternalLink)())
+        Dim links = currentWorkItems.SelectMany(Function(w) w.Links.Cast(Of Link).OfType(Of ExternalLink)())
         Dim changesetRegex As New Regex("vstfs:///VersionControl/Changeset/(\d+)", RegexOptions.Compiled)
         Dim changesetLinks = links.Where(Function(l) changesetRegex.IsMatch(l.LinkedArtifactUri))
 

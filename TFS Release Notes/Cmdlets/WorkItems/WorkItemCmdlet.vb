@@ -24,7 +24,7 @@ Public MustInherit Class WorkItemCmdlet
         End Set
     End Property
 
-    Protected wi As WorkItem()
+    Protected currentWorkItems As WorkItem()
     Protected Overrides Sub BeginProcessing()
         MyBase.BeginProcessing()
         Select Case True
@@ -39,10 +39,10 @@ Public MustInherit Class WorkItemCmdlet
 
         'No need to check for array length because PowerShell handles it for us
         WriteVerbose("Retrieving Work Items...")
-        wi = WorkItemIDs.Distinct.Select(Function(w) TFSCollection.WIT.GetWorkItem(w)).ToArray
+        currentWorkItems = WorkItemIDs.Distinct.Select(Function(w) TFSCollection.WIT.GetWorkItem(w)).ToArray
 
         If GetSubWorkItems Then
-            wi = wi.SelectMany(Function(w) GetChildWorkItems(w, TFSCollection)).DistinctBy(Function(w) w.Id).ToArray
+            currentWorkItems = currentWorkItems.SelectMany(Function(w) GetChildWorkItems(w, TFSCollection)).DistinctBy(Function(w) w.Id).ToArray
         End If
         WriteVerbose("Retrieved Work Items...")
     End Sub
