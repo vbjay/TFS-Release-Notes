@@ -47,6 +47,7 @@ Public Class GetUnlinkedChanges
 
         Dim vfrom As VersionSpec = VersionSpec.ParseSingleSpec(String.Format("D{0:MM/dd/yyyy}", dtFrom), Nothing)
         Dim vTo As VersionSpec = VersionSpec.ParseSingleSpec(String.Format("D{0:MM/dd/yyyy}", dtTo), Nothing)
+        WriteVerbose("Generating list of changes...")
 
         Dim changes = TFSCollection.VCS.QueryHistory(ProjectPath,
                                                      VersionSpec.Latest,
@@ -61,13 +62,13 @@ Public Class GetUnlinkedChanges
                                                 Where(Function(cs) cs.AssociatedWorkItems.Length = 0).
                                                 GroupBy(Function(cs) New With {
                                                             Key .Committer = cs.Committer,
-                                                            Key .Name = cs.CommitterDisplayName})
+                                                            Key .Name = cs.CommitterDisplayName}).ToList
+
+        WriteVerbose("Generated list of changes...")
         For Each c In changes
 
-            WriteObject(New With {.commiter = String.Format("{0}({1})", c.Key.Name, c.Key.Committer), .Changes = c})
-            'For Each ch In c.OrderByDescending(Function(chng) chng.CreationDate)
-            '    WriteObject(ch)
-            'Next
+            WriteObject(New UnlinkedChangesetInfo With {.CommitterDisplay = String.Format("{0}({1})", c.Key.Name, c.Key.Committer), .Committer = c.Key.Committer, .CommitterName = c.Key.Name, .Changesets = c.ToList})
+
         Next
 
     End Sub
