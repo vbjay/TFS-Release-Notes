@@ -5,14 +5,18 @@ Module Services
 
     Function GetTFSCollection(ServerURL As Uri) As TFSCollection
 
+        Return GetTFSCollection(ServerURL, Nothing)
+    End Function
+
+    Function GetTFSCollection(ServerURL As Uri, Credentials As Net.ICredentials) As TFSCollection
+
         Dim tfs As New TFSCollection(
         TfsTeamProjectCollectionFactory.GetTeamProjectCollection(ServerURL))
-
-        tfs.ProjectCollection.Authenticate()
+        If Credentials IsNot Nothing Then tfs.ProjectCollection.Credentials = Credentials
+        tfs.ProjectCollection.EnsureAuthenticated()
 
         Return tfs
     End Function
-
     Iterator Function GetChildWorkItems(WI As WorkItem, tfs As TFSCollection) As IEnumerable(Of WorkItem)
 
         Yield WI

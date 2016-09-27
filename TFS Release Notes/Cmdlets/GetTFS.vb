@@ -3,14 +3,7 @@ Imports Microsoft.TeamFoundation.Client
 
 <Cmdlet(VerbsCommon.Get, "Tfs")>
 Public Class GetTFS
-    Inherits PSCmdlet
-
-    <Parameter(Mandatory:=True,
-               ValueFromPipelineByPropertyName:=True,
-               ValueFromPipeline:=True,
-               Position:=0,
-               HelpMessage:="The URL of the TFS collection to access.")>
-    Property ServerURL As Uri
+    Inherits TFSCmdlet
 
     Protected Overrides Sub BeginProcessing()
         MyBase.BeginProcessing()

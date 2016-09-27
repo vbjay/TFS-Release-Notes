@@ -19,6 +19,11 @@ Public Class TFSCmdlet
                HelpMessage:="The TFS collection to use.")>
     Property TFSCollection As TFSCollection
 
+    <Parameter(Mandatory:=False,
+          ValueFromPipelineByPropertyName:=True,
+          ValueFromPipeline:=False,
+          HelpMessage:="The credentials to use when authenticating.")>
+    Property Credentials As Net.ICredentials
     Protected Overrides Sub BeginProcessing()
         MyBase.BeginProcessing()
         Select Case True
@@ -27,7 +32,7 @@ Public Class TFSCmdlet
                 'we are good
             Case TFSCollection Is Nothing AndAlso ServerURL IsNot Nothing
 
-                TFSCollection = GetTFSCollection(ServerURL)
+                TFSCollection = GetTFSCollection(ServerURL, Credentials)
 
         End Select
 
