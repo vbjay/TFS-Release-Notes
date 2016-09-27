@@ -8,7 +8,7 @@
 
 @{
 # Script module or binary module file associated with this manifest.
-RootModule = 'TFS Release Notes.psm1'
+RootModule = 'import.psm1'
 # Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
 NestedModules= @('TFS Release Notes.dll')
 # Version number of this module.
