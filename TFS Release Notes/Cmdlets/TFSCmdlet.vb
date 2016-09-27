@@ -13,7 +13,7 @@ Public Class TFSCmdlet
 
     <Parameter(Mandatory:=True,
                ValueFromPipelineByPropertyName:=True,
-               ValueFromPipeline:=True,
+               ValueFromPipeline:=False,
                Position:=0,
                ParameterSetName:="Collection",
                HelpMessage:="The TFS collection to use.")>
