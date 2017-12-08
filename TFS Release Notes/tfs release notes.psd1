@@ -12,7 +12,7 @@ RootModule = 'import.psm1'
 # Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
 NestedModules= @('TFS Release Notes.dll')
 # Version number of this module.
-ModuleVersion = '1.0'
+ModuleVersion = '2.0'
 
 # Supported PSEditions
 # CompatiblePSEditions = @(4.0)
@@ -30,7 +30,7 @@ CompanyName = 'VBJay Solutions'
 Copyright = '(c) 2016 Jay Asbury. All rights reserved.'
 
 # Description of the functionality provided by this module
-# Description = 'Contains various cmdlets that allow you to gather release notes from TFS.'
+ Description = 'Contains various cmdlets that allow you to gather release notes from TFS.'
 
 # Minimum version of the Windows PowerShell engine required by this module
 # PowerShellVersion = ''

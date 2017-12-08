@@ -1,2 +1,5 @@
 ﻿#script file to run on import
-Add-Type -assembly "system.io.compression.filesystem"
+$test=Get-Date
+$test
+Add-Type -AssemblyName "system.io.compression.filesystem"
+Add-Type -Path .\Microsoft.VisualStudio.Services.Common.dll

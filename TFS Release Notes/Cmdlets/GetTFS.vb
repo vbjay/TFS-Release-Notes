@@ -11,10 +11,8 @@ Public Class GetTFS
 
     Protected Overrides Sub ProcessRecord()
         MyBase.ProcessRecord()
-        Dim tfs As TFSCollection = GetTFSCollection(ServerURL)
 
-        tfs.ProjectCollection.Authenticate()
-        WriteObject(tfs)
+        WriteObject(TFSCollection)
     End Sub
 
 End Class

@@ -1,5 +1,7 @@
 ﻿Imports Microsoft.TeamFoundation.Client
 Imports Microsoft.TeamFoundation.WorkItemTracking.Client
+Imports Microsoft.VisualStudio.Services.Common
+Imports Microsoft.VisualStudio.Services.WebApi
 
 Module Services
 
@@ -8,12 +10,16 @@ Module Services
         Return GetTFSCollection(ServerURL, Nothing)
     End Function
 
-    Function GetTFSCollection(ServerURL As Uri, Credentials As Net.ICredentials) As TFSCollection
+    Function GetTFSCollection(ServerURL As Uri, Credentials As VssBasicCredential) As TFSCollection
+
+
+
+        Dim projects As New TfsTeamProjectCollection(ServerURL, Credentials)
+        projects.Authenticate()
 
         Dim tfs As New TFSCollection(
-        TfsTeamProjectCollectionFactory.GetTeamProjectCollection(ServerURL))
-        If Credentials IsNot Nothing Then tfs.ProjectCollection.Credentials = Credentials
-        tfs.ProjectCollection.EnsureAuthenticated()
+        projects)
+
 
         Return tfs
     End Function

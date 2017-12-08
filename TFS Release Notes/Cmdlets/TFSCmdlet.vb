@@ -1,4 +1,5 @@
 ﻿Imports System.Management.Automation
+Imports Microsoft.VisualStudio.Services.Common
 
 Public Class TFSCmdlet
     Inherits PSCmdlet
@@ -23,7 +24,13 @@ Public Class TFSCmdlet
           ValueFromPipelineByPropertyName:=True,
           ValueFromPipeline:=False,
           HelpMessage:="The credentials to use when authenticating.")>
-    Property Credentials As Net.ICredentials
+    Property Credentials As VssBasicCredential
+
+    <Parameter(Mandatory:=False,
+          ValueFromPipelineByPropertyName:=True,
+          ValueFromPipeline:=False,
+          HelpMessage:="The Personal Access Token you generated from [site].visualstudio.com.  Will use this to generate credentials for you.  This parameter takes precedence over Credentials.")>
+    Property VSTSToken As String
     Protected Overrides Sub BeginProcessing()
         MyBase.BeginProcessing()
         Select Case True
@@ -31,6 +38,7 @@ Public Class TFSCmdlet
             Case TFSCollection IsNot Nothing
                 'we are good
             Case TFSCollection Is Nothing AndAlso ServerURL IsNot Nothing
+                If VSTSToken IsNot Nothing Then Credentials = New VssBasicCredential("", VSTSToken)
 
                 TFSCollection = GetTFSCollection(ServerURL, Credentials)
 
