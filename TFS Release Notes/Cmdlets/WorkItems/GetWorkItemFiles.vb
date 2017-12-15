@@ -38,10 +38,8 @@ Public Class GetWorkItemFiles
             'Getting this value here because it is slow.  It allows better progress than getting the value above.
             item.WorkItems = changesetWorkItems.Where(Function(ch) item.Changes.Select(Function(ic) ic.Item.ItemId).Intersect(ch.Changes).Any).
                 SelectMany(Function(wc) wc.WorkItems).DistinctBy(Function(w) w.Id).ToArray
-
-            WriteObject(item)
         Next
-
+        WriteObject(byItem, True)
     End Sub
 
 End Class
