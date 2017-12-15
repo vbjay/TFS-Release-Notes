@@ -6,12 +6,20 @@ Generates a list of files changed from a work item.
 
 # Use
 
-```powershell
-Import-Module '.\TFS Release Notes.dll'
+See [Sample Script](https://github.com/vbjay/TFS-Release-Notes/blob/master/TFS%20Release%20Notes/test.ps1) to see how to use this module.
 
-$tfs=Get-Tfs <URI to TFS project collection>
-$wi=$tfs.WIT.GetWorkItem(<work item id>)
+# Types of Info
 
-Get-WorkItemFiles <URI to TFS project collection> <work item id1,work item id2...>
-Get-WorkItemFiles $tfs <work item id1,work item id2...>
-```
+- Get-Tfs: Allows you to get a TfsCollection object that you can use to gather nore information from TFS and pass to the other Cmdlets to prevent having to reauthenticate
+
+## Changesets
+- Get-UnlinkedChangsets: Allows you to find changesets that are not linked to any workitems
+- Get-ChangesetFiles: Allows you to get details about the changed files in a changeset
+
+## WorkItems
+
+All workitem Cmdlets have an an option to process all children workitems too.  This allows you to specify a feature workitem and get all sub workitems.
+
+- Get-WorkItemFiles: Allows you to get a list of files modifed by a workitem 
+- Get-WorkItemChangesets: Allows you to get associated changesets of specidied workitems
+- Get-WorkItemAttachments: Allows you to get the files that are attached to workitems and optionally generate a zip of those files
