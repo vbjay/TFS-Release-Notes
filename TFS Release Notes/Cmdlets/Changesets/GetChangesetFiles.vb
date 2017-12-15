@@ -20,6 +20,7 @@ Public Class GetChangesetFiles
                           .LastCheckin = ItemChanges.Max(Function(ch) ch.Item.CheckinDate)}).ToList
 
         WriteVerbose("List generated...")
+        WriteVerbose("Linking related workitems.")
         For Each item In byItem
             'Getting this value here because it is slow.  It allows better progress than getting the value above.
             item.WorkItems = changesetWorkItems.Where(Function(ch) item.Changes.Select(Function(ic) ic.Item.ItemId).Intersect(ch.Changes).Any).
