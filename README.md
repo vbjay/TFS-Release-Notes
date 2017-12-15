@@ -23,4 +23,4 @@ All workitem Cmdlets have an an option to process all children workitems too.  T
 
 - Get-WorkItemFiles: Allows you to get a list of files modifed by a workitem 
 - Get-WorkItemChangesets: Allows you to get associated changesets of specified workitems
-- Get-WorkItemAttachments: Allows you to get the files that are attached to workitems and optionally generate a zip of those files
+- Get-WorkItemAttachments: Allows you to get the files that are attached to workitems and optionally generate a zip of those files.  You can filter the names of the attachments using regex. 
