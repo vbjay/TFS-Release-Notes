@@ -7,6 +7,7 @@ Generates a list of files changed from a work item.
 # Use
 
 See [Sample Script](https://github.com/vbjay/TFS-Release-Notes/blob/master/TFS%20Release%20Notes/test.ps1) to see how to use this module.
+Authentication is now handled with [Personal Access Tokens](https://goo.gl/8vJTqY)
 
 # Types of Info
 
