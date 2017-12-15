@@ -69,10 +69,10 @@ Copyright = '(c) 2016 Jay Asbury. All rights reserved.'
 FunctionsToExport = @()
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
-CmdletsToExport = @('Get-TFS',
+CmdletsToExport = @(
+	'Get-TFS',
     'Get-WorkItemAttachments',
     'Get-WorkItemFiles',
-    'Get-WorkItemSQLScripts',
     'Get-UnlinkedChanges',
     'Get-ChangesetFiles',
     'Get-WorkItemChangesets'
