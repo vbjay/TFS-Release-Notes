@@ -245,3 +245,4 @@ ModelManifest.xml
 .fake/
 test.ps1
 .cr/
+token.txt

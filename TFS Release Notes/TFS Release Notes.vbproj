@@ -279,6 +279,7 @@
     <Content Include="import.psm1">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Token.txt" />
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
