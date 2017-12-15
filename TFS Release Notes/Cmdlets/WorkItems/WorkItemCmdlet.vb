@@ -27,15 +27,7 @@ Public MustInherit Class WorkItemCmdlet
     Protected currentWorkItems As WorkItem()
     Protected Overrides Sub BeginProcessing()
         MyBase.BeginProcessing()
-        Select Case True
 
-            Case TFSCollection IsNot Nothing
-                'we are good
-            Case TFSCollection Is Nothing AndAlso ServerURL IsNot Nothing
-
-                TFSCollection = GetTFSCollection(ServerURL)
-
-        End Select
 
         'No need to check for array length because PowerShell handles it for us
         WriteVerbose("Retrieving Work Items...")
