@@ -1,4 +1,5 @@
 ﻿Imports System.Management.Automation
+Imports Microsoft.TeamFoundation.Git.Client
 Imports Microsoft.TeamFoundation.WorkItemTracking.Client
 Imports Microsoft.TeamFoundation.WorkItemTracking.Proxy
 
@@ -27,6 +28,7 @@ Public MustInherit Class WorkItemCmdlet
 
     Protected currentWorkItems As WorkItem()
     Protected ItemServer As WorkItemServer
+    Protected GitServer As GitRepositoryService
     Protected Overrides Sub BeginProcessing()
         MyBase.BeginProcessing()
 
@@ -42,7 +44,7 @@ Public MustInherit Class WorkItemCmdlet
         WriteVerbose("Retrieved Work Items...")
         WriteVerbose("Getting workitemserver")
         ItemServer = TFSCollection.ProjectCollection.GetService(Of WorkItemServer)
-
+        GitServer = TFSCollection.ProjectCollection.GetService(Of GitRepositoryService)
     End Sub
     Protected Function DownloadAttachement(AttachmentID As Integer, LocalPath As String) As Boolean
 
